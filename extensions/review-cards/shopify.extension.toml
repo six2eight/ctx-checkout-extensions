@@ -1,0 +1,67 @@
+# Learn more about configuring your checkout UI extension:
+# https://shopify.dev/docs/api/checkout-ui-extensions/latest/configuration
+
+# The version of APIs your extension will receive. Learn more:
+# https://shopify.dev/docs/api/usage/versioning
+api_version = "2026-04"
+
+[[extensions]]
+name = "review-cards"
+handle = "review-cards"
+type = "ui_extension"
+uid = "5a17ab84-7df6-6f91-b711-f02a59b2edc602a0fce3"
+
+# Controls where in Shopify your extension will be injected,
+# and the file that contains your extension’s source code. Learn more:
+# https://shopify.dev/docs/api/checkout-ui-extensions/latest/extension-targets-overview
+
+[[extensions.targeting]]
+module = "./src/Checkout.jsx"
+target = "purchase.checkout.block.render"
+
+[extensions.capabilities]
+# Gives your extension access to directly query Shopify’s storefront API.
+# https://shopify.dev/docs/api/checkout-ui-extensions/latest/configuration#api-access
+api_access = true
+
+# Gives your extension access to make external network calls, using the
+# JavaScript `fetch()` API. Learn more:
+# https://shopify.dev/docs/api/checkout-ui-extensions/latest/configuration#network-access
+# network_access = true
+
+# Loads the app-owned reviews metafield (written by the admin app) so the
+# extension can read it directly without a network call. Learn more:
+# https://shopify.dev/docs/api/checkout-ui-extensions/latest/configuration#metafields
+
+[[extensions.metafields]]
+namespace = "$app"
+key = "reviews"
+
+# Defines settings that will be collected from merchants installing
+# your extension. Learn more:
+# https://shopify.dev/docs/api/checkout-ui-extensions/latest/configuration#settings-definition
+
+[extensions.settings]
+[[extensions.settings.fields]]
+key = "heading"
+type = "single_line_text_field"
+name = "Heading"
+description = "Title shown above the reviews. Leave blank to hide."
+
+[[extensions.settings.fields]]
+key = "subheading"
+type = "multi_line_text_field"
+name = "Subheading"
+description = "Supporting text shown under the heading. Leave blank to hide."
+
+[[extensions.settings.fields]]
+key = "show_google_badge"
+type = "boolean"
+name = "Show Google badge"
+description = "Display the Google logo on reviews whose source is \"Google\"."
+
+[[extensions.settings.fields]]
+key = "view_all_url"
+type = "single_line_text_field"
+name = "View All URL"
+description = "URL for the \"View All\" button shown below the subheading. Leave blank to hide the button."

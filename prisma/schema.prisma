@@ -1,0 +1,49 @@
+// Prisma schema for the CTX Checkout Reviews app.
+// SQLite is used for local development; swap the datasource for production.
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Required by @shopify/shopify-app-session-storage-prisma.
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
+// A customer review entered by the merchant and shown at checkout.
+model Review {
+  id        String   @id @default(uuid())
+  shop      String
+  author    String
+  rating    Int      @default(5)
+  body      String
+  avatarUrl String?
+  imageUrl  String?
+  source    String   @default("Google")
+  verified  Boolean  @default(false)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([shop, published])
+}

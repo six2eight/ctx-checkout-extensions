@@ -1,0 +1,51 @@
+{
+  "name": "ctx-checkout-extensions",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "shopify": "shopify",
+    "build": "remix vite:build",
+    "dev": "shopify app dev",
+    "config:link": "shopify app config link",
+    "config:use": "shopify app config use",
+    "generate": "shopify app generate",
+    "deploy": "shopify app deploy",
+    "info": "shopify app info",
+    "start": "remix-serve ./build/server/index.js",
+    "setup": "prisma generate && prisma migrate deploy",
+    "prisma": "prisma",
+    "vercel-build": "prisma generate && prisma migrate deploy && remix vite:build"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.2.1",
+    "@remix-run/node": "^2.16.1",
+    "@vercel/remix": "^2.16.7",
+    "@remix-run/react": "^2.16.1",
+    "@remix-run/serve": "^2.16.1",
+    "@shopify/app": "^3.58.2",
+    "@shopify/app-bridge-react": "^4.1.6",
+    "@shopify/cli": "^4.1.0",
+    "@shopify/polaris": "^12.10.0",
+    "@shopify/shopify-app-remix": "^3.7.0",
+    "@shopify/shopify-app-session-storage-prisma": "^6.0.0",
+    "@shopify/ui-extensions": "2026.1.1",
+    "isbot": "^5.1.0",
+    "prisma": "^6.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.16.1",
+    "typescript": "^5.9.3",
+    "vite": "^6.2.2"
+  },
+  "trustedDependencies": [
+    "@shopify/plugin-cloudflare"
+  ],
+  "author": "Avijit",
+  "private": true,
+  "workspaces": [
+    "extensions/*"
+  ]
+}
