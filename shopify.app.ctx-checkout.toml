@@ -2,7 +2,7 @@
 
 client_id = "442b2624fa14ba4c805e28f73cfc188d"
 name = "CTX Checkout "
-application_url = "https://example.com"
+application_url = "https://ctx-checkout-extensions.vercel.app"
 embedded = true
 
 [access_scopes]
@@ -12,7 +12,11 @@ optional_scopes = [ ]
 use_legacy_install_flow = false
 
 [auth]
-redirect_urls = [ ]
+redirect_urls = [ 
+  "https://ctx-checkout-extensions.vercel.app/auth/callback",
+  "https://ctx-checkout-extensions.vercel.app/auth/shopify/callback",
+  "https://ctx-checkout-extensions.vercel.app/api/auth/callback"
+]
 
 [webhooks]
 api_version = "2026-04"
