@@ -15,7 +15,7 @@
     "start": "remix-serve ./build/server/index.js",
     "setup": "prisma generate && prisma migrate deploy",
     "prisma": "prisma",
-    "vercel-build": "prisma generate && prisma migrate deploy && remix vite:build"
+    "vercel-build": "npx prisma generate && npx prisma migrate deploy && npx remix vite:build"
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",
