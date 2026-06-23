@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
 client_id = "d178c6b2579497900ce390b260109a66"
-application_url = "https://shopify.dev/apps/default-app-home"
+application_url = "https://ctx-checkout-extensions.vercel.app"
 embedded = true
 name = "CTX checkout review"
 
@@ -17,7 +17,11 @@ api_version = "2026-07"
 scopes = "write_metafields,read_metafields"
 
 [auth]
-redirect_urls = [ "https://shopify.dev/apps/default-app-home/api/auth" ]
+redirect_urls = [ 
+  "https://ctx-checkout-extensions.vercel.app/auth/callback",
+  "https://ctx-checkout-extensions.vercel.app/auth/shopify/callback",
+  "https://ctx-checkout-extensions.vercel.app/api/auth/callback"
+]
 
 [build]
 automatically_update_urls_on_dev = true
