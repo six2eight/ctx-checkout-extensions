@@ -1,4 +1,4 @@
-import { vitePlugin as remix } from "@vercel/remix/vite";
+import { vitePlugin as remix } from "@remix-run/dev";
 import { defineConfig } from "vite";
 
 // The Shopify CLI exposes the dev tunnel URL under different names depending on
