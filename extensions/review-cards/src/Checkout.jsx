@@ -1,7 +1,6 @@
 import "@shopify/ui-extensions/preact";
 import { render } from "preact";
 import { useState, useEffect } from "preact/hooks";
-import { useAppMetafields } from "@shopify/ui-extensions/checkout/preact";
 
 export default function extension() {
   render(<Extension />, document.body);
@@ -143,18 +142,30 @@ function Extension() {
   const viewAllUrl =
     settings.view_all_url == null ? "" : String(settings.view_all_url).trim();
 
-  const entries = useAppMetafields({
-    namespace: "$app",
-    key: "reviews",
-    type: "shop",
-  });
-  let reviews = [];
-  try {
-    const raw = entries && entries[0] && entries[0].metafield.value;
-    if (raw) reviews = JSON.parse(String(raw));
-  } catch (err) {
-    reviews = [];
-  }
+  const [reviews, setReviews] = useState([]);
+  useEffect(() => {
+    fetch(
+      "https://ctx-checkout-extensions.vercel.app/api/reviews?shop=ctx-home-fitness.myshopify.com"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setReviews(
+            data.map((r) => ({
+              author: r.name,
+              body: r.text,
+              createdAt: r.date,
+              rating: r.rating,
+              avatarUrl: r.avatar || null,
+              imageUrl: Array.isArray(r.images) && r.images.length ? r.images[0] : null,
+              source: "Google",
+              verified: false,
+            }))
+          );
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const [activeIndex, setActiveIndex] = useState(0);
 

@@ -27,7 +27,7 @@ api_access = true
 # Gives your extension access to make external network calls, using the
 # JavaScript `fetch()` API. Learn more:
 # https://shopify.dev/docs/api/checkout-ui-extensions/latest/configuration#network-access
-# network_access = true
+network_access = true
 
 # Loads the app-owned reviews metafield (written by the admin app) so the
 # extension can read it directly without a network call. Learn more:
