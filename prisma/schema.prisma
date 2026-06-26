@@ -47,3 +47,10 @@ model Review {
 
   @@index([shop, published])
 }
+
+model ReviewCache {
+  id        Int      @id @default(autoincrement())
+  shop      String   @unique
+  reviews   Json     @default("[]")
+  updatedAt DateTime @updatedAt
+}
